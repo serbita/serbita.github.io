@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Jumbotron Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Gateway API's</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Hello, world!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns 
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+-->
+<div class="row">
+    <div class="col-md-6">
+
+      <h1>Api card_tokens</h1>
+      <!--form id="formcardtoken" target="_self" action="http://localhost:8080/card_tokens" method="post" novalidate="novalidate"-->
+      <!--form id="formcardtoken" target="_self" action="https://pagamento.mercadopago.com/card_tokens/ff80808147efc3310147f53e68b20013" method="post" novalidate="novalidate"-->
+      <form id="formcardtoken" target="_self" action="https://pagamento.mercadopago.com/card_tokens" method="post" novalidate="novalidate">
+      <!--form id="formcardtoken" target="_self" action="http://10.12.32.53:8080/card_tokens/8acb983a47f52e430147f5363d1c0001" method="post" novalidate="novalidate"-->
+      <!--form id="formcardtoken" target="_self" action="https://cert-dmz-805/card_tokens" method="post" novalidate="novalidate"-->
+
+      <table>
+        <tbody>
+          <tr>
+             <td valign="top"><label for="httpmethod" class="label-enabled">http method</label></td>
+             <td>
+                <!--input size="15" type="text" name="httpmethod" style="display: none" onblur=""-->
+                  <select name="httpmethod">
+                    <option value="POST">POST</option>
+                    <option value="PUT">PUT</option>
+                    <option value="GET">GET</option>
+                  </select>
+              </td>
+          </tr> 
+
+          <tr>
+            <td valign="top"><label for="host" class="label-enabled">host</label></td>
+            <!--td><input size="50" type="text" id="host" name="host" value="http://10.12.32.53:8080/card_tokens"></td-->
+            <td><input size="50" type="text" id="host" name="host" value="https://pagamento.mercadopago.com/card_tokens"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="public_key" class="label-enabled">public_key</label></td>
+             <td><input size="50" type="text" id="publicKey" name="public_key" value="841d020b-1077-4742-ad55-7888a0f5aefa"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="accessToken" class="label-enabled">access_token</label></td>
+             <td><input size="50" type="text" id="accessToken" name="access_token" value=""></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="cardtokenid" class="label-enabled">card_token_id</label></td>
+             <td><input size="50" type="text" id="cardtokenid" name="card_token_id" value=""></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="cardNumber" class="label-enabled">card_number</label></td>
+             <td><input type="text" id="cardNumber" name="card_number" value="4019867062373181"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="cardId" class="label-enabled">card_id</label></td>
+             <td><input type="text" id="cardId" name="card_id" value=""></td>
+          </tr>           
+
+          <tr>
+             <td valign="top"><label for="securityCode" class="label-enabled">security_code</label></td>
+             <td><input type="text" id="securityCode" name="security_code" value="123"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="expirationMonth" class="label-enabled">expiration_month</label></td>
+             <td><input type="text" id="expirationMonth" name="expiration_month" value="5"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="expirationYear" class="label-enabled">expiration_year</label></td>
+             <td><input type="text" id="expirationYear" name="expiration_year" value="2016"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="cardholderName" class="label-enabled">cardholder_name</label></td>
+             <td><input type="text" id="cardholderName" name="cardholder_name" value="My name"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="cardholderIdentificationNumber" class="label-enabled">cardholder_identification_number</label></td>
+             <td><input type="text" id="cardholderIdentificationNumber" name="cardholder_identification_number" value="123456789"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="cardholderIdentificationType" class="label-enabled">cardholder_identification_type</label></td>
+             <td><input type="text" id="cardholderIdentificationType" name="cardholder_identification_type" value="DNI"></td>
+          </tr>                
+
+          <tr>
+             <td valign="top"><label for="cardholderIdentificationSubtype" class="label-enabled">cardholder_identification_subtype</label></td>
+             <td><input type="text" id="cardholderIdentificationSubtype" name="cardholder_identification_subtype" value=""></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="redirectUri" class="label-enabled">redirect_uri</label></td>
+             <td><input size="50" type="text" id="redirectUri" name="redirect_uri" value="http://www.noexisteestaurlbla.com/pepe/?bla=pl"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="callback" class="label-enabled">callback</label></td>
+             <td><input type="text" id="callback" name="callback" value="showResponse"></td>
+          </tr>
+
+          <tr>
+             <td valign="top"><label for="_method" class="label-enabled">_method</label></td>
+             <td><input type="text" id="_method" name="_method" value=""></td>
+          </tr>           
+
+          <tr>
+             <td></td>
+             <td>  
+                  <!--input type="submit" value="redirect call"-->
+                   <a class="btn btn-default" href="#" onclick="javascript:caso1_redirect();" role="button">submit call &raquo;</a> 
+                   <a class="btn btn-default" href="#" onclick="javascript:caso1_callCors();" role="button">CORS call &raquo;</a>
+                   <a class="btn btn-default" href="#" onclick="javascript:caso1_callJsonp();" role="button">JSONP call &raquo;</a>
+             </td>
+          </tr>
+
+      </tbody>
+     </table>            
+     </form>
+
+    </div>
+
+    <div class="col-md-6">
+          <h2>Response</h2>
+          <p>bla bla bla</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>   
+          <div id="caso1_dialog"></div>
+    </div>
+</div>  
+
+
+      <footer>
+        <p>&copy; serbita 2014</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+function caso1_redirect() {
+        var varhost = $("#host").val();
+        $("#formcardtoken").attr("action", varhost);
+        $("#formcardtoken").submit();
+};
+
+
+function caso1_callCors() {
+        $("#caso1_dialog").append('Requesting...');
+        $("#caso1_dialog").show('blind');
+
+        var varhost = $("#host").val();
+        var varcardtokenid = $("#cardtokenid").val();
+        var varhttpmethod = $('select[name="httpmethod"]').val();
+
+        var varpublicKey = $("#publicKey").val();
+        var varcardNumber = $("#cardNumber").val();
+        var varcardId = $("#cardId").val();
+        var varsecurityCode = $("#securityCode").val();
+        var varexpirationMonth = parseInt($("#expirationMonth").val());
+        var varexpirationYear = parseInt($("#expirationYear").val());
+        var varcardholderName = $("#cardholderName").val();
+        var varidentificationNumber = $("#cardholderIdentificationNumber").val();
+        var varidentificationType = $("#cardholderIdentificationType").val();
+        var varidentificationSubtype = $("#cardholderIdentificationSubtype").val();
+        //var varredirectUri = $("#redirectUri").val();
+
+        var varurl = varhost;
+        if (varhttpmethod == 'GET') {
+          varurl += '/' + varcardtokenid; 
+        }
+        varurl += "?1=1"
+        varurl += "&public_key="+ varpublicKey;
+
+        //var varurl = "https://pagamento.mercadopago.com/card_tokens?public_key="+ $("#publicKey").val();
+        //var varurl = "http://localhost:8080/card_tokens?public_key="+ $("#publicKey").val();
+        //var varurl = "https://pagamento.mercadopago.com/card_tokens?public_key="+ $("#publicKey").val();
+
+        $.ajax({
+                type: varhttpmethod,
+                url: varurl,
+                contentType: "application/json",
+                data: JSON.stringify({
+                        card_id:varcardId,
+                        card_number:varcardNumber,
+                        security_code:varsecurityCode,
+                        expiration_month:varexpirationMonth,
+                        expiration_year:varexpirationYear,
+                        cardholder:{
+                            name:varcardholderName,
+                            identification:{
+                                type: varidentificationType,
+                                subtype: varidentificationSubtype,
+                                number: varidentificationNumber
+                            }
+                        }
+                }),
+                processData: true,
+                dataType: "json",
+                success: function( response ){
+                    showResponse(response); 
+                    //alert("response: "+response)
+                },
+                error: function( error ){
+                     // Log any error.
+                   showResponse(error); 
+                   //alert("error: "+error)
+                 },
+                complete: function(){
+                     // When this completes, execute teh
+                    // DELETE request.
+                    //makeDELETERequest(); 
+                }
+            });
+};
+
+function caso1_callJsonp() {
+        $("#caso1_dialog").append('Requesting...');
+        $("#caso1_dialog").show('blind');
+
+        var varhost = $("#host").val();
+        var varcardtokenid = $("#cardtokenid").val();
+        var varhttpmethod = $('select[name="httpmethod"]').val();
+
+        var varcardId = $("#cardId").val();
+        var varpublicKey = $("#publicKey").val();
+        var varcardNumber = $("#cardNumber").val();
+        var varsecurityCode = $("#securityCode").val();
+        var varexpirationMonth = parseInt($("#expirationMonth").val());
+        var varexpirationYear = parseInt($("#expirationYear").val());
+        var varcardholderName = $("#cardholderName").val();
+        var varidentificationNumber = $("#cardholderIdentificationNumber").val();
+        var varidentificationType = $("#cardholderIdentificationType").val();
+        var varidentificationSubtype = $("#cardholderIdentificationSubtype").val();
+        var varcallback = $("#callback").val();
+
+        var varurl = varhost;
+        if (varhttpmethod == 'GET') {
+          varurl += '/' + varcardtokenid; 
+        }
+        varurl += "?1=1"
+        varurl += "&public_key="+ varpublicKey + '&callback='+ varcallback;
+        varurl += '&_method='+varhttpmethod;
+        varurl += '&_body='+ encodeURIComponent('{"card_id": "'+ varcardId +'","card_number": "'+ varcardNumber +'","security_code":"'+ varsecurityCode +'","expiration_month":"'+ varexpirationMonth +'","expiration_year":"'+ varexpirationYear +'","cardholder":{ "name":"'+ varcardholderName +'","identification":{"type":"'+ varidentificationType +'","subtype":"'+ varidentificationType +'","number":"'+ varidentificationNumber +'"}}}');
+
+        $.ajax({
+            url: varurl,
+            /*
+            headers: {
+                "X-Public":"true",
+                "Content-Type":"application/json"
+            },
+            beforeSend: function (request)
+            {
+                request.setRequestHeader("X-Public", "true");
+            },*/
+            success: function(response) {
+               //alert("response: "+response);
+               showResponse(response);
+            }
+        });
+
+        //varurl += '&_body='+ encodeURIComponent('{"card_number":"varcardNumber","security_code":"varsecurityCode","cardholder":{"name":"nameserbita","identification":{"type":"DNI","subtype":null,"number":"27777777"}}}');
+ };
+/*
+      https://pagamento.mercadopago.com/card_tokens?public_key=841d020b-1077-4742-ad55-7888a0f5aefa&callback=JQueryTest&_method=POST&_body={"card_number":"40000000045455","security_code":"000","cardholder":{"name":"nameserbita","identification":{"type":"DNI","subtype":null,"number":"27777777"}}}
+  
+        //var varurl = "http://localhost:8080/card_tokens?public_key="+ $("#publicKey").val();
+        //var varurl = "https://pagamento.mercadopago.com/card_tokens?public_key="+ $("#publicKey").val();
+
+        $.getJSON(varurl,
+                  {
+                      card_number: varcardNumber,
+                      security_code: varsecurityCode,
+                      expiration_month: varexpirationMonth,
+                      expiration_year: varexpirationYear,
+                      cardholder: {
+                        name: varcardholderName,
+                        identification: {
+                          type: varidentificationType,
+                          subtype: varidentificationSubtype,
+                          number: varidentificationNumber
+                        }
+                      }
+                  },
+                  function(response) {
+                      showResponse(response);
+                  }
+        );
+*/
+
+
+
+function showResponse(response) {
+        //$("#caso1_dialog").append('</br>Response:'+JSON.stringify(response)+'</br>');
+        $("#caso1_dialog").html('Response: </br>'+JSON.stringify(response));
+};
+</script>    
+  </body>
+</html>
