@@ -25,14 +25,14 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<style>
-caso1_dialog {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
-.string { color: green; }
-.number { color: darkorange; }
-.boolean { color: blue; }
-.null { color: magenta; }
-.key { color: red; }
-</style>    
+    <style>
+      caso1_dialog {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+      .string { color: green; }
+      .number { color: darkorange; }
+      .boolean { color: blue; }
+      .null { color: magenta; }
+      .key { color: red; }
+    </style>    
   </head>
 
   <body>
@@ -106,7 +106,6 @@ caso1_dialog {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
           <tr>
              <td valign="top"><label for="httpmethod" class="label-enabled">http method</label></td>
              <td>
-                <!--input size="15" type="text" name="httpmethod" style="display: none" onblur=""-->
                   <select name="httpmethod">
                     <option value="POST">POST</option>
                     <option value="PUT">PUT</option>
@@ -117,7 +116,6 @@ caso1_dialog {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
 
           <tr>
             <td valign="top"><label for="host" class="label-enabled">host</label></td>
-            <!--td><input size="50" type="text" id="host" name="host" value="http://10.12.32.53:8080/card_tokens"></td-->
             <td><input size="50" type="text" id="host" name="host" value="https://pagamento.mercadopago.com/card_tokens"></td>
           </tr> 
 
@@ -219,19 +217,12 @@ caso1_dialog {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
     </div>
 </div>  
 
-
-      <footer>
-        <p>&copy; serbita 2014</p>
-      </footer>
-    </div> <!-- /container -->
+<footer><p>&copy; serbita 2014</p></footer>
+</div> <!-- /container -->
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
 function caso1_redirect() {
@@ -259,7 +250,6 @@ function caso1_callCors() {
         var varidentificationNumber = $("#cardholderIdentificationNumber").val();
         var varidentificationType = $("#cardholderIdentificationType").val();
         var varidentificationSubtype = $("#cardholderIdentificationSubtype").val();
-        //var varredirectUri = $("#redirectUri").val();
 
         var varurl = varhost;
         if (varhttpmethod == 'GET') {
@@ -267,10 +257,6 @@ function caso1_callCors() {
         }
         varurl += "?1=1"
         varurl += "&public_key="+ varpublicKey;
-
-        //var varurl = "https://pagamento.mercadopago.com/card_tokens?public_key="+ $("#publicKey").val();
-        //var varurl = "http://localhost:8080/card_tokens?public_key="+ $("#publicKey").val();
-        //var varurl = "https://pagamento.mercadopago.com/card_tokens?public_key="+ $("#publicKey").val();
 
         $.ajax({
                 type: varhttpmethod,
@@ -295,17 +281,11 @@ function caso1_callCors() {
                 dataType: "json",
                 success: function( response ){
                     showResponse(response); 
-                    //alert("response: "+response)
                 },
                 error: function( error ){
-                     // Log any error.
                    showResponse(error); 
-                   //alert("error: "+error)
                  },
                 complete: function(){
-                     // When this completes, execute teh
-                    // DELETE request.
-                    //makeDELETERequest(); 
                 }
             });
 };
@@ -371,5 +351,5 @@ function syntaxHighlight(json) {
 };
 
 </script>    
-  </body>
+</body>
 </html>
