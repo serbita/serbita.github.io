@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>Gateway apis</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -24,6 +24,15 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+<style>
+caso1_dialog {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+.string { color: green; }
+.number { color: darkorange; }
+.boolean { color: blue; }
+.null { color: magenta; }
+.key { color: red; }
+</style>    
   </head>
 
   <body>
@@ -40,7 +49,7 @@
           <a class="navbar-brand" href="#">Gateway API's</a>
         </div>
         <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" role="form">
+          <!--form class="navbar-form navbar-right" role="form">
             <div class="form-group">
               <input type="text" placeholder="Email" class="form-control">
             </div>
@@ -48,7 +57,7 @@
               <input type="password" placeholder="Password" class="form-control">
             </div>
             <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
+          </form-->
         </div><!--/.navbar-collapse -->
       </div>
     </div>
@@ -56,9 +65,9 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Hello, world!</h1>
+        <!--h1>Hello, world!</h1>
         <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p-->
       </div>
     </div>
 
@@ -205,8 +214,7 @@
 
     <div class="col-md-6">
           <h2>Response</h2>
-          <p>bla bla bla</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>   
+          <p></p>   
           <div id="caso1_dialog"></div>
     </div>
 </div>  
@@ -332,57 +340,36 @@ function caso1_callJsonp() {
         varurl += '&_body='+ encodeURIComponent('{"card_id": "'+ varcardId +'","card_number": "'+ varcardNumber +'","security_code":"'+ varsecurityCode +'","expiration_month":"'+ varexpirationMonth +'","expiration_year":"'+ varexpirationYear +'","cardholder":{ "name":"'+ varcardholderName +'","identification":{"type":"'+ varidentificationType +'","subtype":"'+ varidentificationType +'","number":"'+ varidentificationNumber +'"}}}');
 
         $.ajax({
-            url: varurl,
-            /*
-            headers: {
-                "X-Public":"true",
-                "Content-Type":"application/json"
-            },
-            beforeSend: function (request)
-            {
-                request.setRequestHeader("X-Public", "true");
-            },*/
+            url: varurl,            
             success: function(response) {
-               //alert("response: "+response);
                showResponse(response);
             }
         });
-
-        //varurl += '&_body='+ encodeURIComponent('{"card_number":"varcardNumber","security_code":"varsecurityCode","cardholder":{"name":"nameserbita","identification":{"type":"DNI","subtype":null,"number":"27777777"}}}');
- };
-/*
-      https://pagamento.mercadopago.com/card_tokens?public_key=841d020b-1077-4742-ad55-7888a0f5aefa&callback=JQueryTest&_method=POST&_body={"card_number":"40000000045455","security_code":"000","cardholder":{"name":"nameserbita","identification":{"type":"DNI","subtype":null,"number":"27777777"}}}
-  
-        //var varurl = "http://localhost:8080/card_tokens?public_key="+ $("#publicKey").val();
-        //var varurl = "https://pagamento.mercadopago.com/card_tokens?public_key="+ $("#publicKey").val();
-
-        $.getJSON(varurl,
-                  {
-                      card_number: varcardNumber,
-                      security_code: varsecurityCode,
-                      expiration_month: varexpirationMonth,
-                      expiration_year: varexpirationYear,
-                      cardholder: {
-                        name: varcardholderName,
-                        identification: {
-                          type: varidentificationType,
-                          subtype: varidentificationSubtype,
-                          number: varidentificationNumber
-                        }
-                      }
-                  },
-                  function(response) {
-                      showResponse(response);
-                  }
-        );
-*/
-
-
+};
 
 function showResponse(response) {
-        //$("#caso1_dialog").append('</br>Response:'+JSON.stringify(response)+'</br>');
-        $("#caso1_dialog").html('Response: </br>'+JSON.stringify(response));
+        $("#caso1_dialog").html(syntaxHighlight(JSON.stringify(response)));
 };
+
+function syntaxHighlight(json) {
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var cls = 'number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'key';
+            } else {
+                cls = 'string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+        } else if (/null/.test(match)) {
+            cls = 'null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+};
+
 </script>    
   </body>
 </html>
