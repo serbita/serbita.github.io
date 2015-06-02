@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="//assets/ico/favicon.ico">
+
+    <title>Bitcoin apis</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+      caso1_dialog {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+      .string { color: green; }
+      .number { color: darkorange; }
+      .boolean { color: blue; }
+      .null { color: magenta; }
+      .key { color: red; }
+    </style>    
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Bitcoin API's</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <!--form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form-->
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        
+      </div>
+    </div>
+
+    <div class="container">
+
+<div class="row">
+    <div class="col-md-6">
+
+      <h1>Api bitcoin orders</h1>
+      
+      <form id="formcardtoken" target="_self" action="https://api.mercadopago.com/v1/bitcoin_orders" method="post" novalidate="novalidate">
+      <table>
+        <tbody>
+          <tr>
+             <td valign="top"><label for="httpmethod" class="label-enabled">http method</label></td>
+             <td>
+                  <select name="httpmethod">
+                    <option value="POST">POST</option>
+                    <option value="PUT">PUT</option>
+                    <option value="GET">GET</option>
+                  </select>
+              </td>
+          </tr> 
+
+          <tr>
+            <td valign="top"><label for="host" class="label-enabled">host</label></td>
+            <td><input size="50" type="text" id="host" name="host" value="https://api.mercadopago.com/v1/bitcoin_orders"></td>
+          </tr> 
+
+          <tr>
+            <td valign="top"><label for="bitcoinorderid" class="label-enabled">bitcoinorderid</label></td>
+            <td><input size="50" type="text" id="bitcoinorderid" name="bitcoinorderid" value=""></td>
+          </tr>
+
+
+          <tr>
+             <td valign="top"><label for="paymentId" class="label-enabled">payment_id</label></td>
+             <td><input size="50" type="text" id="paymentId" name="payment_id" value="123"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="siteId" class="label-enabled">site_id</label></td>
+             <td><input size="50" type="text" id="siteId" name="site_id" value="MLM"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="currencyId" class="label-enabled">currency_id</label></td>
+             <td><input size="50" type="text" id="currencyId" name="currency_id" value="MXN"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="amount" class="label-enabled">amount</label></td>
+             <td><input type="text" id="amount" name="amount" value="10"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="payerId" class="label-enabled">payer_id</label></td>
+             <td><input type="text" id="payerId" name="payer_id" value="1234"></td>
+          </tr>           
+
+          <tr>
+             <td valign="top"><label for="collectorId" class="label-enabled">collector_id</label></td>
+             <td><input type="text" id="collectorId" name="collector_id" value="123456"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="applicationId" class="label-enabled">application_id</label></td>
+             <td><input type="text" id="applicationId" name="application_id" value="5daf9ed4-5070-4efe-bef7-a0f05ec68bf9"></td>
+          </tr> 
+
+          <tr>
+             <td valign="top"><label for="_method" class="label-enabled">_method</label></td>
+             <td><input type="text" id="_method" name="_method" value=""></td>
+          </tr>           
+
+          <tr>
+             <td></td>
+             <td>  
+                  <!--input type="submit" value="redirect call"-->
+                   <a class="btn btn-default" href="#" onclick="javascript:caso1_redirect();" role="button">submit call &raquo;</a> 
+                   <a class="btn btn-default" href="#" onclick="javascript:caso1_callCors();" role="button">CORS call &raquo;</a>
+                   <a class="btn btn-default" href="#" onclick="javascript:caso1_callJsonp();" role="button">JSONP call &raquo;</a>
+             </td>
+          </tr>
+
+      </tbody>
+     </table>            
+     </form>
+
+    </div>
+
+    <div class="col-md-6">
+          <h2>Response</h2>
+          <p></p>   
+          <div id="caso1_dialog"></div>
+    </div>
+</div>  
+
+<footer><p>&copy; serbita 2015</p></footer>
+</div> <!-- /container -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+function caso1_callCors() {
+        $("#caso1_dialog").append('Requesting...');
+        $("#caso1_dialog").show('blind');
+
+        var varhost = $("#host").val();
+        var varhttpmethod = $('select[name="httpmethod"]').val();
+        var varbitcoinorderid = $("#bitcoinorderid").val();
+
+        var varpaymentid = $("#paymentId").val();
+        var varsiteid = $("#siteId").val();
+        var varcurrencyid = $("#currencyId").val();
+        var varamount = parseInt($("#amount").val());
+        var varpayerid = parseInt($("#payerId").val());
+        var varcollectorid = parseInt($("#collectorId").val());
+        var varapplicationid = $("#applicationId").val();
+
+        var varurl = varhost;
+        if (varhttpmethod == 'GET') {
+          varurl += '/' + bitcoinorderid; 
+        }
+        varurl += "?1=1"
+        //varurl += "&public_key="+ varpublicKey;
+
+        $.ajax({
+                type: varhttpmethod,
+                url: varurl,
+                contentType: "application/json",
+                data: JSON.stringify({
+                        payment_id:varpaymentid,
+                        site_id:varsiteid,
+                        currency_id:varcurrencyid,
+                        amount:varamount,
+                        payer_id:varpayerid,
+                        collector_id:varcollectorid,
+                        application_id:varapplicationid
+                }),
+                processData: true,
+                dataType: "json",
+                success: function( response ){
+                    showResponse(response); 
+                },
+                error: function( error ){
+                   showResponse(error); 
+                 },
+                complete: function(){
+                }
+            });
+};
+
+
+function showResponse(response) {
+        $("#caso1_dialog").html(syntaxHighlight(JSON.stringify(response)));
+};
+
+function syntaxHighlight(json) {
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var cls = 'number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'key';
+            } else {
+                cls = 'string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+        } else if (/null/.test(match)) {
+            cls = 'null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+};
+
+</script>    
+</body>
+</html>
