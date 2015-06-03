@@ -89,6 +89,7 @@
           </div>
 
           <div id="qr-container" class="col-sm-3 col-md-6 hide">
+            <div id="qr-details" class="thumbnail"></div>
             <div id="qr" class="thumbnail"></div>
           </div>
         </div>
@@ -189,7 +190,12 @@ function fetchResult(orderid) {
           success: function(data) {
             var json = JSON.stringify( data );
             $("#qr").qrcode( {width: 200,height: 200,text:data.receiver.bitcoin_uri} );
+            $("#qr-details").html("Escanea el código QR o envía BTC "+data.receiver.bitcoin_amount+" a la siguiente direccion:"+data.receiver.inbound_address+"<br>Valor de cambio: ?? <br>Asegurate de pagar antes de los 10 minutos.");
 
+              
+/*
+{"id":"e127b95143491dba3ae9fa2833354dcaa51d1f40d825f100835adbf122d1d94e","site_id":"MLM","currency_id":"MXN","payer_id":1212121,"collector_id":12121212,"amount":10,"paid_amount":0,"overpaid_amount":0,"underpaid_amount":0,"provider_id":"coinbase","application_id":"1212121-12121","status":"new","creation_date":"2015-06-02T20:21:58.000-04:00","last_modified_date":"2015-06-02T20:21:59.000-04:00","receiver":{"provider_reference_id":"7GVZ0XD2","inbound_address":"15b6JSR5cL4FnF7Zrhnau66rNoGTtbDM1Q","due_date":"2015-06-02T20:31:59.000-04:00","bitcoin_amount":0.001115,"rate":1.115E-4,"bitcoin_uri":"bitcoin:15b6JSR5cL4FnF7Zrhnau66rNoGTtbDM1Q?amount=0.00111500","creation_date":"2015-06-02T20:21:59.000-04:00"}}
+*/
 
              intID = setInterval(function() {
               //if (percent() > 99) {
