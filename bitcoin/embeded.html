@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<!--
+	Bitcoin Integration
+
+	Method: Embedded
+
+	Transaction Status Check: IPN
+-->
+
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Bitcoin Integration</title>
+
+		<!-- Bootstrap compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	</head>
+	<body style="padding:10px;">
+
+		<div class="page-header">
+			<h1>Your Checkout <small>Embedded Bitcoin Integration</small></h1>
+		</div>
+
+		<ol class="breadcrumb">
+			<li>Shop</li>
+			<li>Cart</li>
+			<li class="active">Checkout</li>
+		</ol>
+
+		<div id="congrats" class="alert alert-success" role="alert" style="display:none">
+			<p>Congratulations! Now wait for the Instant Payment Notification.</p>
+		</div>
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title"><span class="glyphicon glyphicon-shopping-cart"></span>   Checkout</h3>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-3 col-md-2">
+						<div class="thumbnail">
+							<img width="40%" height="40%" src="https://s3.amazonaws.com/images.seroundtable.com/google-shopping-1352901328.png">
+							<div class="caption">
+								<h3>Item title</h3>
+								<p>Item description...</p>
+								<span class="glyphicon glyphicon-usd" style="color:#B00000" ></span><h4 style="display:inline; color:#B00000" >10</h4>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-3 col-md-2">
+						<form class=".form-inline">
+							<div class="form-group">
+								<div class="radio">
+									<label><input type="radio" name="optradio" checked><span class="glyphicon glyphicon-qrcode"></span> Bitcoin <span class="label label-success">New</span></label>
+								</div>
+								<div class="radio disabled">
+									<label><input type="radio" name="optradio" disabled><span class="glyphicon glyphicon-credit-card"></span> Credit Card</label>
+								</div>
+								<div class="radio disabled">
+									<label><input type="radio" name="optradio" disabled><span class="glyphicon glyphicon-briefcase"></span> Bank Transfer</label>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div class="col-sm-3 col-md-2">
+						<div>
+							<img src="https://s3.amazonaws.com/bittrust/coinbase_logo_white.png" alt="Smiley face" height="55%" width="55%">
+							<button class="btn btn-default" data-loading-text="Wait..." id="coinbase">Get QR!</button>
+						</div>
+						<br>
+						<div>
+							<img src="http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/042014/bitpay-logo-inverse.png" alt="Smiley face" height="55%" width="55%">
+							<button class="btn btn-default" data-loading-text="Wait..." id="bitpay">Get QR!</button>
+						</div>
+						<br>
+						<div>
+							<img src="http://www.bitcoinx.com/wp-content/uploads/2014/06/BitPagos_713x200.png" alt="Smiley face" height="55%" width="55%">
+							<button class="btn btn-default" data-loading-text="Wait..." id="bitpagos">Get QR!</button>
+						</div>
+					</div>
+
+					<div id="qr-container" class="col-sm-3 col-md-5 hide">
+						<div id="qr" class="thumbnail"></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+		<!-- Latest Bootstrap compiled and minified JavaScript - October 2014 -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+		<!-- jquery.qrcode.js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+		<script>
+
+			$("#coinbase").on("click", function(e) {
+
+				e.preventDefault();
+
+				var $btn = $(this).button('loading')
+
+				$("#qr").html(" ");
+
+				$.ajax({
+					type: 'POST',
+					async:false,
+					url: "http://54.148.156.169/org/foa/preferences/coinbase",
+					success: function(data) {
+						var json = JSON.parse( data );
+						$("#qr").append( $('<iframe />').attr({ src : json.iframe_url}) );
+					}
+				});
+
+				$("#qr-container").removeClass("hide");
+
+				$btn.button('reset')
+			});
+
+			$("#bitpay").on("click", function(e) {
+
+				e.preventDefault();
+
+				var $btn = $(this).button('loading')
+
+				$("#qr").html(" ");
+
+				$.ajax({
+					type: 'POST',
+					async:false,
+					url: "http://54.148.156.169/org/foa/preferences/bitpay",
+					success: function(data) {
+						var json = JSON.parse( data );
+						$("#qr").qrcode( {width: 200,height: 200,text: json.qrcode_BIP73} );
+					}
+				});
+
+				$("#qr-container").removeClass("hide");
+
+				$btn.button('reset')
+			});
+
+			var mecha;
+
+			$("#bitpagos").on("click", function(e) {
+
+				e.preventDefault();
+
+				var $btn = $(this).button('loading')
+
+				$("#qr").html(" ");
+
+				$.ajax({
+					type: 'POST',
+					async:false,
+					url: "http://54.148.156.169/org/foa/preferences/bitpagos",
+					success: function(data) {
+						var json = JSON.parse( data );
+						mecha = json;
+						$("#qr").html( $('<img />').attr({ src : "data:image/png;base64," + json.qrcode_base64}).css("width", "50%").css("height", "50%") );
+					}
+				});
+
+				$("#qr-container").removeClass("hide");
+
+				$btn.button('reset')
+			});			
+
+		</script>
+
+	</body>
+</html>
