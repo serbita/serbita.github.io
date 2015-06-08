@@ -210,11 +210,12 @@ function caso1_callCors() {
 
 function showResponse(response) {
   $("#caso1_dialog").html(syntaxHighlight(JSON.stringify(response)));
-  showQRCode(response.receiver.inbound_address,response.bitcoin_amount);
+  showQRCode(response.receiver.inbound_address,response.receiver.bitcoin_amount);
 
 };
 
 function showQRCode(address, amount) {
+  //console.log(amount)
   $('#qrcodeCanvas').qrcode({
       text:"bitcoin:"+address+"?amount="+amount
   }); 
