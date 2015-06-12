@@ -198,10 +198,10 @@
         $("#congrats").fadeOut();
 
         var request_json = {
-            "payment_id"    : $("#payment_id").val(),
+            "payment_id"    : parseInt($("#payment_id").val()),
             "site_id"   : "MLM",
             "currency_id"   : "MXN",
-            "amount"    : $("#amount").val(),
+            "amount"    : parseInt($("#amount").val()),
             "payer_id"    : 1234,
             "collector_id"    : 123456,
             "application_id"  : "5daf9ed4-5070-4efe-bef7-a0f05ec68bf9"
