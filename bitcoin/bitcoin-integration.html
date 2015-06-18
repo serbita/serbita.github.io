@@ -11,304 +11,222 @@
 
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-
-    <title>Bitcoin Integration</title>
-
-    <!-- Bootstrap compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
-    <style type="text/css">
-      /**
-      * Price
-      */
-      .ch-price {
-      color: #900;
-      font-weight: bold;
-      }
-      .ch-price sup {
-      vertical-align: text-top;
-      line-height: 1em;
-      }
-    </style>
-
-  </head>
-  <body style="padding:10px;">
-
-    <div class="page-header">
-      <h1>Your Checkout <small>Embedded Bitcoin Integration</small></h1>
-    </div>
-
-    <ol class="breadcrumb">
-      <li>Shop</li>
-      <li>Cart</li>
-      <li class="active">Checkout</li>
-    </ol>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title"><span class="glyphicon glyphicon-shopping-cart"></span>   Checkout</h3>
-      </div>
-      <div class="panel-body container-fluid">
-        <div class="row">
-          <div class="col-sm-2">
-            <div class="thumbnail">
-              <img width="40%" height="40%" src="https://s3.amazonaws.com/images.seroundtable.com/google-shopping-1352901328.png">
-              <div class="caption">
-                <h3>Item title</h3>
-                <p>Item description...</p>
-                <span class="glyphicon glyphicon-usd" style="color:#B00000" ></span><h4 style="display:inline; color:#B00000" >5</h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-3">
-            <form class=".form-inline">
-              <div class="form-group">
-                <div class="radio">
-                  <label><input type="radio" name="optradio" checked><span class="glyphicon glyphicon-qrcode"></span> Bitcoin <span class="label label-success">New</span></label>
-                </div>
-                <div class="radio disabled">
-                  <label><input type="radio" name="optradio" disabled><span class="glyphicon glyphicon-credit-card"></span> Credit Card</label>
-                </div>
-                <div class="radio disabled">
-                  <label><input type="radio" name="optradio" disabled><span class="glyphicon glyphicon-briefcase"></span> Bank Transfer</label>
-                </div>
-              </div>
-            </form>
-
-            <div>
-              
-              <button class="btn btn-lg btn-default" data-loading-text="Wait..."  style="text-align: center;" id="mercadopago"> <img src="https://mercadopago.mlstatic.com/static/xF6VNzmj28HGihHmtI1HwFKQ0xGxNg0eGbdwpGJWGpu.png" alt="Smiley face" height="50%" width="50%" style="margin-right:15px;">Get QR!</button>
-            </div>
-            <br>
-            <div class="hide">
-              <label style="width:65px" >payment:</label>
-              <input id="payment_id" type="text" style="width:100px" value="1140322854"/>
-            </div>
-            <div class="hide">
-              <label  style="width:65px">amount:</label>
-              <input id="amount" type="text" style="width:60px"  value="5"/>
-              <label>MXN</label>
-            </div>
-            <!-- <div>
-              <img src="https://s3.amazonaws.com/bittrust/coinbase_logo_white.png" alt="Smiley face" height="55%" width="55%">
-              <button class="btn btn-default" data-loading-text="Wait..." id="coinbase">Get QR!</button>
-            </div>
-            <div>
-              <img src="http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/042014/bitpay-logo-inverse.png" alt="Smiley face" height="55%" width="55%">
-              <button class="btn btn-default" data-loading-text="Wait..." id="bitpay">Get QR!</button>
-            </div>
-            <div>
-              <img src="http://www.bitcoinx.com/wp-content/uploads/2014/06/BitPagos_713x200.png" alt="Smiley face" height="55%" width="55%">
-              <button class="btn btn-default" data-loading-text="Wait..." id="bitpagos">Get QR!</button>
-            </div> -->
-          </div>
-
-          <div id="congrats" class="col-sm-7 " style="display:none">
-
-            <div id="congrats_wording" class="alert" role="alert"></div>
-
-          </div>
-
-          <div id="qr-container" class="col-sm-2 "  style="display:none">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Bitcoin Integration</title>
+
+		<!-- Bootstrap compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+		<style type="text/css">
+
+			/* Price */
+			.ch-price {
+				color: #900;
+				font-weight: bold;
+			}
+			.ch-price sup {
+				vertical-align: text-top;
+				line-height: 1em;
+			}
+
+		</style>
+
+	</head>
+	<body style="padding:10px;">
+
+		<div class="page-header">
+			<h1>Your Checkout <small>Embedded Bitcoin Integration</small></h1>
+		</div>
+
+		<ol class="breadcrumb">
+			<li>Shop</li>
+			<li>Cart</li>
+			<li class="active">Checkout</li>
+		</ol>
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title"><span class="glyphicon glyphicon-shopping-cart"></span>   Checkout</h3>
+			</div>
+			<div class="panel-body container-fluid">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="thumbnail">
+							<img width="40%" height="40%" src="https://s3.amazonaws.com/images.seroundtable.com/google-shopping-1352901328.png">
+							<div class="caption">
+								<h3>Item title</h3>
+								<p>Item description...</p>
+								<span class="glyphicon glyphicon-usd" style="color:#B00000" ></span><h4 style="display:inline; color:#B00000" >5</h4>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-3">
+						<form class=".form-inline">
+							<div class="form-group">
+								<div class="radio">
+									<label><input type="radio" name="optradio" checked><span class="glyphicon glyphicon-qrcode"></span> Bitcoin <span class="label label-success">New</span></label>
+								</div>
+								<div class="radio disabled">
+									<label><input type="radio" name="optradio" disabled><span class="glyphicon glyphicon-credit-card"></span> Credit Card</label>
+								</div>
+								<div class="radio disabled">
+									<label><input type="radio" name="optradio" disabled><span class="glyphicon glyphicon-briefcase"></span> Bank Transfer</label>
+								</div>
+							</div>
+						</form>
+
+						<div>
+							<img src="https://s3.amazonaws.com/bittrust/coinbase_logo_white.png" alt="Smiley face" height="25%" width="25%">
+							<button class="btn btn-lg btn-default" data-loading-text="Wait..."  style="text-align: center;" provider="coinbase" id="mercadopago_coinbase">Get QR!</button>
+							<br>
+							<img src="http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/042014/bitpay-logo-inverse.png" alt="Smiley face" height="25%" width="25%">
+							<button class="btn btn-lg btn-default" data-loading-text="Wait..."  style="text-align: center;" provider="bitpay"  id="mercadopago_bitpay">Get QR!</button>
+						</div>
+
+						<br>
+						<div class="hide">
+							<label style="width:65px" >payment:</label>
+							<input id="payment_id" type="text" style="width:100px" value="1140322854"/>
+						</div>
+						<div class="hide">
+							<label  style="width:65px">amount:</label>
+							<input id="amount" type="text" style="width:60px"  value="5"/>
+							<label>MXN</label>
+						</div>
+					</div>
+
+					<div id="congrats" class="col-sm-7 " style="display:none">
+
+						<div id="congrats_wording" class="alert" role="alert"></div>
+
+					</div>
+
+					<div id="qr-container" class="col-sm-2 "  style="display:none">
+
+						<div id="qr" style="padding: inherit; padding-top: 20px;"></div>
+
+					</div>
+
+					<div id="info-container" class="col-sm-5 " style="display:none">
+						<div id="qr-details">
+							
+						<p   style="font-weight: bold;padding-top: 20px;">Escanea el código QR o envía <span class="ch-price" id="response_bitcoin_amount"></span> a la siguiente direccion: <code id="response_bitcoin_address"></code></p>
+	
 
-            <div id="qr" style="padding: inherit; padding-top: 20px;"></div>
+						<p>Valor de cambio: <span class="ch-price"> 1 MXN ⇄ <span id="response_bitcoin_rate"></span> BTC</span></p>
 
-          </div>
 
-          <div id="info-container" class="col-sm-5 " style="display:none">
-            <div id="qr-details">
-              
-            <p   style="font-weight: bold;padding-top: 20px;">Escanea el código QR o envía <span class="ch-price" id="response_bitcoin_amount"></span> a la siguiente direccion: <code id="response_bitcoin_address"></code></p>
-  
+						<p style="color: #777;">Asegurate de pagar antes de los 10 minutos.</p>
+		
+						</div>
+						
+					</div>
+				</div>
+			</div>
 
-            <p>Valor de cambio: <span class="ch-price"> 1 MXN ⇄ <span id="response_bitcoin_rate"></span> BTC</span></p>
+		</div>
 
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-            <p style="color: #777;">Asegurate de pagar antes de los 10 minutos.</p>
-    
-            </div>
-            
-          </div>
-        </div>
-      </div>
+		<!-- Latest Bootstrap compiled and minified JavaScript - October 2014 -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    </div>
+		<!-- jquery.qrcode.js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script>
 
-    <!-- Latest Bootstrap compiled and minified JavaScript - October 2014 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+			var intID = null;
 
-    <!-- jquery.qrcode.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+			function startPoolling(orderId) {
 
-    <script>
+				$.ajax({
+					url: 'https://api.mercadopago.com/v1/bitcoin_orders/'+orderId,
+					type: 'GET',
+					success: function(data) {
 
-      var intID = null;
+						if( data.status != "new" ){
 
-      function startPoolling(orderId) {
+							$("#congrats_wording").removeClass("alert-warning");
+							$("#congrats_wording").addClass("alert-success");
 
-        $.ajax({
-          url: 'https://api.mercadopago.com/v1/bitcoin_orders/'+orderId,
-          type: 'GET',
-          success: function(data) {
+							if ( data.status == "paid") {
+								$("#congrats_wording").html("<p>¡Felicitaciones, el pago fué acreditado!</p>");
+							}
 
-            if( data.status != "new" ){
+							if ( data.status == "overpaid") {
+								$("#congrats_wording").html("<p>¡Felicitaciones, el pago fué acreditado! Pagaste de más, el dinero restante se acreditará en tu cuenta de MercadoPago.</p>");
+							}
 
-              $("#congrats_wording").removeClass("alert-warning");
-              $("#congrats_wording").addClass("alert-success");
+							if ( data.status == "underpaid") {
+								$("#congrats_wording").removeClass("alert-success");
+								$("#congrats_wording").addClass("alert-warning");
+								$("#congrats_wording").html("<p>Hemos recibido tu pago, pero pagaste de menos, por favor completa el monto restante.</p>");
+							}
 
-              if ( data.status == "paid") {
-                $("#congrats_wording").html("<p>¡Felicitaciones, el pago fué acreditado!</p>");
-              }
+							$("#qr-container").fadeOut();
+							$("#info-container").fadeOut(400, function(){$("#congrats").fadeIn();});
 
-              if ( data.status == "overpaid") {
-                $("#congrats_wording").html("<p>¡Felicitaciones, el pago fué acreditado! Pagaste de más, el dinero restante se acreditará en tu cuenta de MercadoPago.</p>");
-              }
+							// // stop timer
+							// clearInterval(intID);
+							// intID = null;
+						}
+					}      
+				});
+			}
 
-              if ( data.status == "underpaid") {
-                $("#congrats_wording").removeClass("alert-success");
-                $("#congrats_wording").addClass("alert-warning");
-                $("#congrats_wording").html("<p>Hemos recibido tu pago, pero pagaste de menos, por favor completa el monto restante.</p>");
-              }
+			$("[id^='mercadopago']").on("click", function(e) {
 
-              $("#qr-container").fadeOut();
-              $("#info-container").fadeOut(400, function(){$("#congrats").fadeIn();});
+				e.preventDefault();
 
-              // stop timer
-              clearInterval(intID);
-              intID = null;
-            }
-          }      
-        });
-      }
+				var $btn = $(this).button('loading')
 
-      $("#mercadopago").on("click", function(e) {
+				$("#qr").html(" ");
 
-        e.preventDefault();
+				$("#congrats").fadeOut();
 
-        var $btn = $(this).button('loading')
+				var request_json = {
+						"payment_id"		: parseInt($("#payment_id").val()),
+						"site_id"		: "MLM",
+						"currency_id"		: "MXN",
+						"amount"		: parseInt($("#amount").val()),
+						"payer_id"		: 1234,
+						"collector_id"		: 123456,
+						"application_id"	: "5daf9ed4-5070-4efe-bef7-a0f05ec68bf9",
+						"profile_id"		: $(this).attr("provider")
+				}
 
-        $("#qr").html(" ");
+				$.ajax({
 
-        $("#congrats").fadeOut();
+					type: 'POST',
+					url: "https://api.mercadopago.com/v1/bitcoin_orders",
+					contentType: "application/json",
+					data: JSON.stringify(request_json),
+					processData: true,
+					dataType: "json",
 
-        var request_json = {
-            "payment_id"    : parseInt($("#payment_id").val()),
-            "site_id"   : "MLM",
-            "currency_id"   : "MXN",
-            "amount"    : parseInt($("#amount").val()),
-            "payer_id"    : 1234,
-            "collector_id"    : 123456,
-            "profile_id"    : "coinbase",            
-            "application_id"  : "5daf9ed4-5070-4efe-bef7-a0f05ec68bf9"
-        }
+					success: function(data) {
 
-        $.ajax({
+						$("#qr").qrcode( {width: 100,height: 100, text:data.receiver.bitcoin_uri} );
+						$("#response_bitcoin_amount").html(data.receiver.bitcoin_amount + " BTC");
+						$("#response_bitcoin_address").html(data.receiver.inbound_address);
+						$("#response_bitcoin_rate").html(data.receiver.rate);
 
-          type: 'POST',
-          url: "https://api.mercadopago.com/v1/bitcoin_orders",
-          contentType: "application/json",
-          data: JSON.stringify(request_json),
-          processData: true,
-          dataType: "json",
+						$("#qr-container").fadeIn();
+						$("#info-container").fadeIn();
 
-          success: function(data) {
+						intID = setInterval(function() {
+							startPoolling(data.id);
+					  	}, 5000);
+					}
+				});
 
-            $("#qr").qrcode( {width: 100,height: 100, text:data.receiver.bitcoin_uri} );
-            $("#response_bitcoin_amount").html(data.receiver.bitcoin_amount + " BTC");
-            $("#response_bitcoin_address").html(data.receiver.inbound_address);
-            $("#response_bitcoin_rate").html(data.receiver.rate);
-
-            $("#qr-container").fadeIn();
-            $("#info-container").fadeIn();
-
-            intID = setInterval(function() {
-              startPoolling(data.id);
-              }, 5000);
-          }
-        });
-
-        $btn.button('reset')
-      });
-
-      // $("#coinbase").on("click", function(e) {
-
-      //  e.preventDefault();
-
-      //  var $btn = $(this).button('loading')
-
-      //  $("#qr").html(" ");
-
-      //  $.ajax({
-      //    type: 'POST',
-      //    async:false,
-      //    url: "http://54.148.156.169/org/foa/preferences/coinbase",
-      //    success: function(data) {
-      //      var json = JSON.parse( data );
-      //      $("#qr").append( $('<iframe />').attr({ src : json.iframe_url}) );
-      //    }
-      //  });
-
-      //  $("#qr-container").removeClass("hide");
-
-      //  $btn.button('reset')
-      // });
-
-      // $("#bitpay").on("click", function(e) {
-
-      //  e.preventDefault();
-
-      //  var $btn = $(this).button('loading')
-
-      //  $("#qr").html(" ");
-
-      //  $.ajax({
-      //    type: 'POST',
-      //    async:false,
-      //    url: "http://54.148.156.169/org/foa/preferences/bitpay",
-      //    success: function(data) {
-      //      var json = JSON.parse( data );
-      //      $("#qr").qrcode( {width: 200,height: 200,text: json.qrcode_BIP73} );
-      //    }
-      //  });
-
-      //  $("#qr-container").removeClass("hide");
-
-      //  $btn.button('reset')
-      // });
-
-      // var mecha;
-
-      // $("#bitpagos").on("click", function(e) {
-
-      //  e.preventDefault();
-
-      //  var $btn = $(this).button('loading')
-
-      //  $("#qr").html(" ");
-
-      //  $.ajax({
-      //    type: 'POST',
-      //    async:false,
-      //    url: "http://54.148.156.169/org/foa/preferences/bitpagos",
-      //    success: function(data) {
-      //      var json = JSON.parse( data );
-      //      mecha = json;
-      //      $("#qr").html( $('<img />').attr({ src : "data:image/png;base64," + json.qrcode_base64}).css("width", "50%").css("height", "50%") );
-      //    }
-      //  });
-
-      //  $("#qr-container").removeClass("hide");
-
-      //  $btn.button('reset')
-      // });
-
-  </script>
-
-  </body>
+				$btn.button('reset')
+			});
+		</script>
+	</body>
 </html>
