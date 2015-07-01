@@ -96,31 +96,23 @@
           </div>
 
           <div id="congrats" class="col-sm-7 " style="display:none">
-
             <div id="congrats_wording" class="alert" role="alert"></div>
-
           </div>
 
           <div id="qr-container" class="col-sm-2 "  style="display:none">
-
             <div id="qr" style="padding: inherit; padding-top: 20px;"></div>
-
           </div>
 
           <div id="info-container" class="col-sm-5 " style="display:none">
             <div id="qr-details">
-              
-            <p   style="font-weight: bold;padding-top: 20px;">Escanea el código QR o envía <span class="ch-price" id="response_bitcoin_amount"></span> a la siguiente direccion: <code id="response_bitcoin_address"></code></p>
-  
-
-<!--            <p>Valor de cambio: <span class="ch-price"> 1 MXN ⇄ <span id="response_bitcoin_rate"></span> BTC</span></p>  -->
-            <p style="color: #777;">Valor de cambio: 1 MXN ⇄ <span id="response_bitcoin_rate"></span> BTC</p>
-
-            <p style="color: #777;">Asegurate de pagar antes de los 10 minutos.</p>
-    
+              <p style="font-weight: bold;padding-top: 20px;">Escanea el código QR o envía <span class="ch-price" id="response_bitcoin_amount"></span> a la siguiente direccion: <code id="response_bitcoin_address"></code></p>
+              <!--<p>Valor de cambio: <span class="ch-price"> 1 MXN ⇄ <span id="response_bitcoin_rate"></span> BTC</span></p>  -->
+              <p style="color: #777;">Valor de cambio: 1 MXN ⇄ <span id="response_bitcoin_rate"></span> BTC</p>
+              <p style="color: #777;">Proveedor: <span id="response_bitcoin_profile"></span></p>              
+              <p style="color: #777;">Asegurate de pagar antes de los 10 minutos.</p>
             </div>
-            
           </div>
+
         </div>
       </div>
 
@@ -151,8 +143,11 @@
               $("#congrats_wording").removeClass("alert-warning");
               $("#congrats_wording").addClass("alert-success");
 
-              if ( data.status == "appoved") {
-                $("#congrats_wording").html("<p>¡Felicitaciones, el pago fué acreditado! AGREGAR MAS DETALLE DEL PAGO como el monto overpaid</p>");
+              if ( data.status == "approved") {
+                $("#congrats_wording").html("<p>¡Felicitaciones, el pago fué acreditado!</p>");
+                //stop timer
+                clearInterval(intID);
+                intID = null;                
               }
               
               if ( data.status == "in_process") {
@@ -165,6 +160,9 @@
                 $("#congrats_wording").removeClass("alert-success");
                 $("#congrats_wording").addClass("alert-warning");
                 $("#congrats_wording").html("<p>El pago se ha expirado. Si desea pagar, cree un pago nuevo.</p>");
+                //stop timer
+                clearInterval(intID);
+                intID = null;
               }
 
  /*             if ( data.status == "overpaid") {
@@ -180,9 +178,6 @@
               $("#qr-container").fadeOut();
               $("#info-container").fadeOut(400, function(){$("#congrats").fadeIn();});
 
-              //stop timer
-              //clearInterval(intID);
-              //intID = null;
             }
           }      
         });
@@ -228,6 +223,7 @@
             $("#response_bitcoin_amount").html(data.bitcoin_order.receiver.bitcoin_amount + " BTC");
             $("#response_bitcoin_address").html(data.bitcoin_order.receiver.inbound_address);
             $("#response_bitcoin_rate").html(data.bitcoin_order.receiver.rate);
+            $("#response_bitcoin_profile").html(data.bitcoin_order.provider_id);
             intID = setInterval(function() {
               startPoolling(data.id);
               }, 5000);
