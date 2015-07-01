@@ -159,7 +159,7 @@
               if ( data.status == "cancelled") {
                 $("#congrats_wording").removeClass("alert-success");
                 $("#congrats_wording").addClass("alert-warning");
-                $("#congrats_wording").html("<p>El pago se ha expirado. Si desea pagar, cree un pago nuevo.</p>");
+                $("#congrats_wording").html("<p>El pago ha expirado. Si desea pagar, cree un pago nuevo.</p>");
                 //stop timer
                 clearInterval(intID);
                 intID = null;
