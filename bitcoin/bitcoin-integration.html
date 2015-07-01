@@ -124,8 +124,8 @@
             <p   style="font-weight: bold;padding-top: 20px;">Escanea el código QR o envía <span class="ch-price" id="response_bitcoin_amount"></span> a la siguiente direccion: <code id="response_bitcoin_address"></code></p>
   
 
-            <p>Valor de cambio: <span class="ch-price"> 1 MXN ⇄ <span id="response_bitcoin_rate"></span> BTC</span></p>
-
+<!--            <p>Valor de cambio: <span class="ch-price"> 1 MXN ⇄ <span id="response_bitcoin_rate"></span> BTC</span></p>  -->
+            <p style="color: #777;">Valor de cambio: 1 MXN ⇄ <span id="response_bitcoin_rate"></span> BTC</p>
 
             <p style="color: #777;">Asegurate de pagar antes de los 10 minutos.</p>
     
@@ -150,23 +150,35 @@
 
       var intID = null;
 
-      function startPoolling(orderId) {
+      function startPoolling(paymentId) {
 
         $.ajax({
-          url: 'https://api.mercadopago.com/v1/bitcoin_orders/'+orderId,
+          url: 'https://api.mercadopago.com/v1/bitcoin_orders/paymentswrapper/'+paymentId,
           type: 'GET',
           success: function(data) {
 
-            if( data.status != "new" ){
+            if( data.status != "pending" ){
 
               $("#congrats_wording").removeClass("alert-warning");
               $("#congrats_wording").addClass("alert-success");
 
-              if ( data.status == "paid") {
-                $("#congrats_wording").html("<p>¡Felicitaciones, el pago fué acreditado!</p>");
+              if ( data.status == "appoved") {
+                $("#congrats_wording").html("<p>¡Felicitaciones, el pago fué acreditado! AGREGAR MAS DETALLE DEL PAGO como el monto overpaid</p>");
+              }
+              
+              if ( data.status == "in_process") {
+                $("#congrats_wording").removeClass("alert-success");
+                $("#congrats_wording").addClass("alert-warning");
+                $("#congrats_wording").html("<p>El pago está en proceso. Le notificaremos luego el resultado del pago.</p>");
               }
 
-              if ( data.status == "overpaid") {
+              if ( data.status == "cancelled") {
+                $("#congrats_wording").removeClass("alert-success");
+                $("#congrats_wording").addClass("alert-warning");
+                $("#congrats_wording").html("<p>El pago se ha expirado. Si desea pagar, cree un pago nuevo.</p>");
+              }
+
+ /*             if ( data.status == "overpaid") {
                 $("#congrats_wording").html("<p>¡Felicitaciones, el pago fué acreditado! Pagaste de más, el dinero restante se acreditará en tu cuenta de MercadoPago.</p>");
               }
 
@@ -175,7 +187,7 @@
                 $("#congrats_wording").addClass("alert-warning");
                 $("#congrats_wording").html("<p>Hemos recibido tu pago, pero pagaste de menos, por favor completa el monto restante.</p>");
               }
-
+*/
               $("#qr-container").fadeOut();
               $("#info-container").fadeOut(400, function(){$("#congrats").fadeIn();});
 
@@ -197,7 +209,7 @@
 
         $("#congrats").fadeOut();
 
-        var request_json = {
+/*        var request_json = {
             "payment_id"    : parseInt($("#payment_id").val()),
             "site_id"   : "MLM",
             "currency_id"   : "MXN",
@@ -207,11 +219,12 @@
             "profile_id"    : "coinbase",            
             "application_id"  : "5daf9ed4-5070-4efe-bef7-a0f05ec68bf9"
         }
-
+*/
+        var request_json = {}
         $.ajax({
 
           type: 'POST',
-          url: "https://api.mercadopago.com/v1/bitcoin_orders",
+          url: "https://api.mercadopago.com/v1/bitcoin_orders/paymentswrapper",
           contentType: "application/json",
           data: JSON.stringify(request_json),
           processData: true,
@@ -219,10 +232,10 @@
 
           success: function(data) {
 
-            $("#qr").qrcode( {width: 100,height: 100, text:data.receiver.bitcoin_uri} );
-            $("#response_bitcoin_amount").html(data.receiver.bitcoin_amount + " BTC");
-            $("#response_bitcoin_address").html(data.receiver.inbound_address);
-            $("#response_bitcoin_rate").html(data.receiver.rate);
+            $("#qr").qrcode( {width: 100,height: 100, text:data.bitcoin_order.receiver.bitcoin_uri} );
+            $("#response_bitcoin_amount").html(data.bitcoin_order.receiver.bitcoin_amount + " BTC");
+            $("#response_bitcoin_address").html(data.bitcoin_order.receiver.inbound_address);
+            $("#response_bitcoin_rate").html(data.bitcoin_order.receiver.rate);
 
             $("#qr-container").fadeIn();
             $("#info-container").fadeIn();
