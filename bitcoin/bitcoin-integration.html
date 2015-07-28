@@ -132,13 +132,15 @@
 
 		<script>
 
+			var collectorId;
+
 			var intID = null;
 
 			function startPoolling(paymentId) {
 
 				$.ajax({
 
-					url: 'https://api.mercadopago.com/v1/bitcoin_orders/paymentswrapper/'+paymentId,
+					url: 'https://api.mercadopago.com/v1/bitcoin_orders/paymentswrapper/'+paymentId+'?collectorId='+collectorId,
 					type: 'GET',
 					success: function(data) {
 
@@ -181,6 +183,9 @@
 
 				e.preventDefault();
 
+				clearInterval(intID);
+				intID = null;
+
 				var $btn = $(this).button('loading')
 
 				$("#qr").html(" ");
@@ -189,7 +194,9 @@
 
 				var payerId = (Math.random() >= 0.5)?187638800:187635013;
 
-				var request_json = {"payer_id":payerId};
+				collectorId = (payerId == 187635013)?187638800:187635013;
+
+				var request_json = {"payer_id":payerId, "collector_id":collectorId};
 
 				$.ajax({
 
