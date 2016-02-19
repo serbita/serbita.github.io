@@ -96,7 +96,7 @@
 
       <h1>Api card_tokens</h1>
       <!--form id="formcardtoken" target="_self" action="http://localhost:8080/card_tokens" method="post" novalidate="novalidate"-->
-      <form id="formcardtoken" target="_self" action="https://pagamento.mercadopago.com/card_tokens" method="post" novalidate="novalidate">
+      <form id="formcardtoken" target="_self" action="https://api.mercadopago.com/v1/card_tokens" method="post" novalidate="novalidate">
       <table>
         <tbody>
           <tr>
@@ -112,12 +112,12 @@
 
           <tr>
             <td valign="top"><label for="host" class="label-enabled">host</label></td>
-            <td><input size="50" type="text" id="host" name="host" value="https://pagamento.mercadopago.com/card_tokens"></td>
+            <td><input size="50" type="text" id="host" name="host" value="https://api.mercadopago.com/v1/card_tokens"></td>
           </tr> 
 
           <tr>
              <td valign="top"><label for="public_key" class="label-enabled">public_key</label></td>
-             <td><input size="50" type="text" id="publicKey" name="public_key" value=""></td>
+             <td><input size="50" type="text" id="publicKey" name="public_key" value="841d020b-1077-4742-ad55-7888a0f5aefa"></td>
           </tr> 
 
           <tr>
@@ -213,7 +213,7 @@
     </div>
 </div>  
 
-<footer><p>&copy; serbita 2014</p></footer>
+<footer><p>&copy; serbita 2015</p></footer>
 </div> <!-- /container -->
 
 
